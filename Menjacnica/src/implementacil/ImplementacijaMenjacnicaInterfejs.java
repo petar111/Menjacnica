@@ -29,8 +29,10 @@ public class ImplementacijaMenjacnicaInterfejs implements MenjacnicaInterfejs {
 	@Override
 	public void brisanjeKursaValuteZaDatum(GregorianCalendar datum) {
 		for(int i = 0 ; i < kursevi.size() ; i++){
-			if(kursevi.get(i).getDatum().equals(datum))
+			if(kursevi.get(i).getDatum().equals(datum)){
 				kursevi.remove(i);
+				return;
+			}
 		}
 
 	}
