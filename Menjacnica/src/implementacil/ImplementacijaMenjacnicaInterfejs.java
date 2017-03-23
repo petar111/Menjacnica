@@ -7,37 +7,40 @@ import interfejsi.MenjacnicaInterfejs;
 import valuta.kurs.Kurs;
 
 public class ImplementacijaMenjacnicaInterfejs implements MenjacnicaInterfejs {
-
+	
+	private String naziv;
+	private String skraceniNaziv;
 	private LinkedList<Kurs> kursevi = new LinkedList<Kurs>();
 	@Override
 	public void dodavanjeKursaValuteZaDatum(GregorianCalendar datum, double prodajniKurs, double srednjiKurs,
 			double kupovniKurs) {
 		Kurs novi = new Kurs();
-		try {
-			if(datum == null){}else
+		try{
 			novi.setDatum(datum);
-			if(kupovniKurs < 0){}else
 			novi.setKupovniKurs(kupovniKurs);
-			if(prodajniKurs < 0){}else
 			novi.setProdajniKurs(prodajniKurs);
-			if(srednjiKurs < 0){}else
 			novi.setSrednjiKurs(srednjiKurs);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		kursevi.add(novi);
-
 	}
 
 	@Override
 	public void brisanjeKursaValuteZaDatum(GregorianCalendar datum) {
-		// TODO Auto-generated method stub
+		for(int i = 0 ; i < kursevi.size() ; i++){
+			if(kursevi.get(i).getDatum().equals(datum))
+				kursevi.remove(i);
+		}
 
 	}
 
 	@Override
 	public Kurs vratiKursZaDatum(GregorianCalendar datum) {
-		// TODO Auto-generated method stub
+		for(int i = 0 ; i < kursevi.size() ; i++){
+			if(kursevi.get(i).getDatum().equals(datum))
+				return kursevi.get(i);
+		}
 		return null;
 	}
 
